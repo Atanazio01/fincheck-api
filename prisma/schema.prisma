@@ -22,7 +22,7 @@ model User {
   @@map("users") //how to save the table at the database
 }
 
-enum BanckAccountType {
+enum BankAccountType {
   CHECKING
   INVESTMENT
   CASH
@@ -31,11 +31,11 @@ enum BanckAccountType {
 }
 
 model BankAccount {
-  id             String           @id @default(uuid()) @db.Uuid
-  userId         String           @map("user_id") @db.Uuid //foreign key
+  id             String          @id @default(uuid()) @db.Uuid
+  userId         String          @map("user_id") @db.Uuid //foreign key
   name           String
-  initialBalance Float            @map("initial_balance")
-  type           BanckAccountType
+  initialBalance Float           @map("initial_balance")
+  type           BankAccountType
   color          String
 
   user         User          @relation(fields: [userId], references: [id], onDelete: Cascade)
