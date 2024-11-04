@@ -16,7 +16,7 @@ model User {
   email        String        @unique
   password     String
   bankAccounts BankAccount[]
-  catecories   Category[]
+  categories   Category[]
   transactions Transaction[]
 
   @@map("users") //how to save the table at the database
@@ -68,7 +68,7 @@ model Transaction {
   id            String          @id @default(uuid()) @db.Uuid
   userId        String          @map("user_id") @db.Uuid
   bankAccountId String          @map("bank_account_id") @db.Uuid
-  catecoryId    String?         @map("category_id") @db.Uuid
+  categoryId    String?         @map("category_id") @db.Uuid
   name          String
   value         Float
   date          DateTime
@@ -76,7 +76,7 @@ model Transaction {
 
   user        User        @relation(fields: [userId], references: [id], onDelete: Cascade)
   bankAccount BankAccount @relation(fields: [bankAccountId], references: [id], onDelete: Cascade)
-  category    Category?   @relation(fields: [catecoryId], references: [id], onDelete: SetNull)
+  category    Category?   @relation(fields: [categoryId], references: [id], onDelete: SetNull)
 
   @@map("transactions")
 }
